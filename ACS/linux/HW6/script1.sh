@@ -1,11 +1,10 @@
 #!/bin/bash
-#This is a comment
-echo "The current directory is: "
-pwd 
-echo "The user logged in as: "
+echo "hello!"
+if echo "I am "
 whoami
-echo "I have 1$ in my pocket!"
-if pwd
 then
-echo "It works!"
+echo "my current working directory is: "
+pwd
+echo "and as I am logged as Margaret, "
+echo "obviously I am programmer and I have 1$ in my pocket! Hurray!"
 fi
