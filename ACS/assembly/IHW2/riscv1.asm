@@ -197,29 +197,31 @@ run_single_test:
     
     # Вычисляем π
     call compute_pi_zeta
-    fmv.d f8, fa0
+    #параметр: a0 = количество итераций (сохранено из входного параметра)
+    #возврат: fa0 = вычисленное значение Pi
+    fmv.d f8, fa0  # Сохраняем результат: f8 = вычисленное значение Pi
     
     # Вычисляем погрешность
-    fmv.d fa0, f8
+    fmv.d fa0, f8 #подготовка параметра: fa0 = вычисленный Pi из f8
     call calculate_error
-    fmv.d f9, fa0
+    fmv.d f9, fa0   #сохраняем результат: f9=погрешность в процентах
     
     # Выводим результаты теста
     PRINT_STRING(test_iter_msg)
-    lw a0, 24(sp)
-    PRINT_INT(a0)
+    lw a0, 24(sp) #восстанавливаем количество итераций для вывода
+    PRINT_INT(a0)  #параметр: a0 = количество итераций
     
     PRINT_STRING(test_pi_msg)
-    PRINT_DOUBLE(f8)
+    PRINT_DOUBLE(f8)  #параметр: f8 = вычисленное значение Pi
     
     PRINT_STRING(test_error_msg)
-    PRINT_DOUBLE(f9)
+    PRINT_DOUBLE(f9) #параметр: f9 = вычисленная погрешность
     PRINT_STRING(test_percent)
     
     # Проверяем условие точности (0.1%)
     la t0, threshold_0_1
-    fld f10, 0(t0)
-    flt.d t0, f9, f10
+    fld f10, 0(t0) #f10 = пороговое значение 0.1%
+    flt.d t0, f9, f10 #сравнение: если f9 (погрешность) < f10 (0.1%)
     
     bnez t0, test_passed
     PRINT_STRING(test_fail)
@@ -229,7 +231,7 @@ test_passed:
     PRINT_STRING(test_pass)
     
 test_end:
-    lw a0, 24(sp)
+    lw a0, 24(sp) #восстанавливаем оригинальное значение a0
     fld f9, 16(sp)
     fld f8, 8(sp)
     lw ra, 0(sp)
@@ -255,12 +257,12 @@ automated_test_loop:
     beqz s1, automated_test_done
     
     #загружаем количество итераций и запускаем тест
-    lw a0, 0(s0)
-    call run_single_test
+    lw a0, 0(s0) #параметр: a0 = текущее количество итераций из test_iterations
+    call run_single_test #результат: вывод в консоль, возвращаемое значение не используется
     
     #следующий тестовый набор
-    addi s0, s0, 4
-    addi s1, s1, -1
+    addi s0, s0, 4 #перемещаем указатель на следующий элемент массива
+    addi s1, s1, -1 #уменьшаем счетчик оставшихся тестов
     j automated_test_loop
 
 automated_test_done:
@@ -282,37 +284,44 @@ interactive_mode:
     
     #ввод данных
     PRINT_STRING(prompt)
+    #вызов макроса INPUT_INT_TO: ввод целого числа от пользователя
+    #параметр: %reg = s0 (регистр для сохранения результата)
     INPUT_INT_TO(s0)
     
     #корректность ввода
-    blez s0, interactive_error
+    blez s0, interactive_error #если s0 (количество итераций) <= 0
     
     #вычисление Pi с использованием макроса-обёртки
-    COMPUTE_PI(s0, f24)
+    #Вызов макроса COMPUTE_PI: вычисление π через обертку
+    COMPUTE_PI(s0, f24)  #параметры: %iter_reg = s0 (количество итераций), %result_freg = f24 (регистр для результата)
+    #возврат: f24 = вычисленное значение Pi
     
     #вычисление погрешности
-    COMPUTE_ERROR(f24, f25)
+    #параметры: %computed_freg = f24 (вычисленный π), %error_freg = f25 (регистр для погрешности)
+    COMPUTE_ERROR(f24, f25) #возврат: f25 = погрешность в процентах
     
     #вывод результатов
-    PRINT_STRING(result_msg)
-    PRINT_DOUBLE(f24)
+    PRINT_STRING(result_msg) #вызов макроса PRINT_DOUBLE: вывод значения Pi
+    PRINT_DOUBLE(f24) #параметр: %freg = f24 (вычисленное значение Pi)
     PRINT_STRING(newline)
     
     #информация о погрешности
-    PRINT_STRING(test_error_msg)
-    PRINT_DOUBLE(f25)
+    PRINT_STRING(test_error_msg) #Вызов макроса PRINT_DOUBLE: вывод погрешности
+    PRINT_DOUBLE(f25) #параметр: %freg = f25 (вычисленная погрешность)
     PRINT_STRING(test_percent)
     PRINT_STRING(newline)
     
     #проверка точности
     la t0, threshold_0_1
-    fld f26, 0(t0)
-    flt.d t0, f25, f26
+    fld f26, 0(t0) #f26 = пороговое значение 0.1%
+    flt.d t0, f25, f26 #сравнение: если f25 (погрешность) < f26 (0.1%)
     beqz t0, precision_warning
     j interactive_done
 
 precision_warning:
+#Вызов системного вызова: вывод предупреждения
     la a0, precision_warn_msg #выводим сообщение, если точность не достигнута
+# Параметр: a0 = адрес строки precision_warn_msg
     li a7, 4
     ecall
     j interactive_done
@@ -329,4 +338,4 @@ interactive_done:
     ret
 
 .data
-precision_warn_msg: .asciz "Warning! Precision is under 0.1%. Make bigger number of iterations.\n"
+precision_warn_msg: .asciz "Warning! Precision is under 0.1%. Make bigger number of iterations(enter another bigger number).\n"
