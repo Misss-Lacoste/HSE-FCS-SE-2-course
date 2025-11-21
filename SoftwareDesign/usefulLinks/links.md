@@ -79,3 +79,27 @@
 [Issue about MV-patterns](https://habr.com/ru/companies/mobileup/articles/313538/)
 
 [Historical info about MV-patterns](https://simpleone.ru/blog/mv-patterns-in-web-application-development)
+
+
+##### Lection10
+[Cинхронное и асинхронное взаимдействие](https://vc.ru/id1788045/709274-sinhronnoe-vs-asinhronnoe-vybiraem-podhod-k-vzaimodeistviyu-mikroservisov)
+
+[Для погружения](https://habr.com/ru/companies/oleg-bunin/articles/543946/)
+
+[Клиент-серверное и межсервисное взаимодействие](https://university.ylab.io/articles/tpost/j9l5xdbxs1-mezhservisnoe-vzaimodeistvie)
+
+[Чуть подробнее](https://habr.com/ru/articles/729528/)
+
+[REST API](https://blog.skillfactory.ru/glossary/rest-api/)
+
+[gRPC](https://yandex.cloud/ru/docs/glossary/grpc?utm_referrer=https%3A%2F%2Fwww.google.com%2F)
+
+[SOAP API](https://blog.skillfactory.ru/glossary/soap-api/)
+
+[GraphQL](https://blog.skillfactory.ru/kak-novichku-nachat-polzovatsya-graphql-i-zachem-eto-nuzhno/)
+
+[WebSocket](https://blog.skillfactory.ru/glossary/websocket/)
+
+[Webhooks](https://www.mango-office.ru/journal/for-marketing/osnovy/webhook-i-kak-ego-ispolzovat/)
+
+[REST API vs GraphQL](https://academy.mediasoft.team/article/rest-api-vs-graphql-vybiraem-arkhitekturu-obsheniya-fronta-i-beka-dlya-prilozheniya/)
