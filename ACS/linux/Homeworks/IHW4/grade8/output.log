@@ -1,0 +1,28 @@
+!!! В данных выходных файлах почему-то секунды отображаются как какие-то сумасшедшие числа, 
+при дублировании вывода на консоль отображается нормальное число секунд - от 0 и до тех пор, 
+пока либо программа не закончит свою работу, либо пока я не прерву ее выполнение. Скриншоты будут в отчете !!!
+The number of chatties: 3
+Working time is: 30 seconds
+Config file: config1.txt
+3 seconds - the prog is launched. All chatties are active! 
+For entire 142676028 seconds the chatty 142676128 is waiting for a call -- 1667331187 seconds!
+For entire 142676020 seconds the chatty 142676128 is waiting for a call -- 1667331187 seconds!
+For entire 142676024 seconds the chatty 142676128 is waiting for a call -- 1667331187 seconds!
+For entire 1765626581 seconds the chatty 0 is trying to call somebody!
+For entire 142676040 seconds the chatty 142676128 is waiting for a call -- 1667331187 seconds!
+For entire 1765626582 seconds the chatty 0 is trying to call somebody!
+For entire 142676052 seconds the chatty 142676128 is waiting for a call -- 1667331187 seconds!
+For entire 1765626584 seconds the chatty 0 is trying to call somebody!
+1765626584 seconds -  the chatty 0 did not find another chatties :(
+For entire 142676080 seconds the chatty 142676128 is waiting for a call -- 1667331187 seconds!
+For entire 142676128 seconds the chatty 1667331187 and the chatty -1122873280 are talking - 0 seconds!
+0 seconds: the chatty 0 and the chatty 1667331187 stopped talking!
+For entire 142676084 seconds the chatty 142676128 is waiting for a call -- 1667331187 seconds!
+For entire 142676128 seconds the chatty 1667331187 and the chatty -1122873160 are talking - 0 seconds!
+0 seconds: the chatty 0 and the chatty 1667331187 stopped talking!
+For entire 142676088 seconds the chatty 142676128 is waiting for a call -- 1667331187 seconds!
+For entire 1765626587 seconds the chatty 0 is trying to call somebody!
+For entire 142676104 seconds the chatty 142676128 is waiting for a call -- 1667331187 seconds!
+1765626580 seconds -  the stopping signal got. Now we are stopping the work!
+For entire 142676128 seconds the chatty 1667331187 and the chatty -1122873160 are talking - 0 seconds!
+0 seconds: the chatty 0 and the chatty 1667331187 stopped talking!

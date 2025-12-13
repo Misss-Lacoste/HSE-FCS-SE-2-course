@@ -1,0 +1,3 @@
+#Config for 3 chatties
+chatters=3
+runtime=30
