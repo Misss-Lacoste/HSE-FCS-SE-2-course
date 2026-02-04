@@ -16,7 +16,7 @@
 
     let un(n) = "_" * n
 
-    let approval_page_code = cfg.project.code // + "-ЛУ"
+    let approval_page_code = cfg.project.code + "-ЛУ"
 
     // отметка об учёте и хранении по ГОСТ 19.601-78
     let storage_table = {
