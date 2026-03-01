@@ -97,10 +97,11 @@ WHERE
 GROUP BY u.user_id, u.user_name
 HAVING COUNT(b.bid_id) > 3
 ORDER BY bid_count DESC;
+```
 
 #### **Задание 4: Проекты только от "дорогих" фрилансеров**
 
-``sql
+```sql
 SELECT p.project_id, p.title, p.budget
 FROM Projects p
 WHERE p.budget > 50000
@@ -121,11 +122,11 @@ JOIN Freelancers f ON b.freelancer_id = f.user_id
 WHERE p.budget > 50000
 GROUP BY p.project_id, p.title
 HAVING MIN(f.hourly_rate) >= 1500;
-``
+```
 
 #### **Задание 5: Среднее количество заявок по специализациям**
 
-``sql
+```sql
 -- Считаем общее количество заявок для каждой специализации
 WITH SpecializationBidCounts AS (
     SELECT
