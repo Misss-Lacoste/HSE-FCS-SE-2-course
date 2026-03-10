@@ -14,7 +14,21 @@
        to_char(t.birth, 'DDSPTH') "7"
   from sotrudniki t;*/
 --SELECT t.* from sotrudniki t where to_char(t.birth,'yyyy')='1985'
-SELECT t.*,
+/*SELECT t.*,
 CASE WHEN t.secondname is NULL then 'нет'
 ELSE t.secondname end
-from sotrudniki t;
+from sotrudniki t;*/
+
+/*select * from sotrudniki t
+where t.dept_id in (select t.dept_id from sotrudniki t
+where t.dept_id is not null
+group by t.dept_id
+having count (*)>1);*/
+
+/*select t.*, (select o.name from otdel o where t.dept_id = o.id) department
+  from sotrudniki t;*/
+
+--<имя табл 1> <join type> join <имя табл 2> on <условия объединения>
+
+select t.*, o.name, a.street, a.num_house
+from sotrudniki t left join otdel o on t.dept_id=o.id left join address a on t.id=a.emp_id
