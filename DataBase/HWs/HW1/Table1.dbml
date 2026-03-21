@@ -1,65 +1,65 @@
-Project project_name {
+Project business_trips_project {
   database_type: 'PostgreSQL'
-  Note: 'The 1st task'
+  Note: 'ER-model for business trips (Task 1)'
 }
 
-Table User {
-  user_id integer [primary key]
-  name varchar(150)
-  registration_date timestamp
+Table Branch {
+  branch_id integer [primary key]
+  city varchar(100)
 }
 
-Table Orderer {
-  iorderer_id integer [primary key]
+Table Employee {
+  employee_id integer [primary key]
+  branch_id integer
 }
 
-Table Freelancer {
-  freelancer_id integer [primary key]
-  specialization varchar(150)
-  working_hours integer
+Table Trip {
+  trip_id integer [primary key]
+  employee_id integer
+  branch_id integer
+  planned_start_date date
+  fact_start_date date
+  planned_end_date date
+  fact_end_date date
+  task text
+  cancel_date date
 }
 
-Table Project {
-  name varchar(150)
-  project_id integer [primary key]
-  orderer_id integer 
-  description varchar(150)
-  budget integer
-  status varchar(150)
-  created_at timestamp
-  completed_at timestamp
+Table Flight {
+  flight_id integer [primary key]
+  trip_id integer
+  origin_city varchar(100)
+  destination_city varchar(100)
+  airline varchar(100)
+  flight_number varchar(20)
+  departure_datetime datetime
+  ticket_price decimal(10,2)
 }
 
-Table Bids {
-  bid_id integer [primary key]
-  project_id integer
-  freelancer_id integer
-  cost integer
-  status varchar(150)
-  completed_at timestamp
-  registration_date timestamp
-  accepted_at timestamp
-  rejected_at timestamp
+Table Hotel {
+  hotel_id integer [primary key]
+  name varchar(100)
+  address text
+  city varchar(100)
+  room_charge decimal(10,2)
 }
 
-Table Review {
-  review_id integer [primary key]
-  project_id integer
-  reting integer
-  comment varchar(150)
-  created_at timestamp
+Table Hotel_reservation {
+  reservation_id integer [primary key]
+  trip_id integer
+  hotel_id integer
+  checkin_date date
+  checkout_date date
 }
 
-Ref: "User"."user_id" < "Freelancer"."freelancer_id"
+Ref: "Branch"."branch_id" < "Employee"."branch_id" // один филиал — много сотрудников
 
-Ref: "User"."user_id" < "Orderer"."iorderer_id"
+Ref: "Branch"."branch_id" < "Trip"."branch_id" // один филиал — много поездок из него
 
-Ref: "Orderer"."iorderer_id" < "Project"."project_id"
+Ref: "Employee"."employee_id" < "Trip"."employee_id" // один сотрудник — много поездок
 
-Ref: "Freelancer"."freelancer_id" < "Bids"."bid_id"
+Ref: "Trip"."trip_id" < "Flight"."trip_id" // одна поездка — два рейса (вылет и прилёт)
 
-Ref: "Project"."project_id" < "Bids"."bid_id"
+Ref: "Trip"."trip_id" < "Hotel_reservation"."trip_id" // одна поездка — одно бронирование отеля
 
-Ref: "Project"."project_id" - "Review"."review_id" //один проект - один отзыв, по синтаксису через тире
-
-Ref: "Freelancer"."freelancer_id" - "Review"."review_id"
+Ref: "Hotel"."hotel_id" < "Hotel_reservation"."hotel_id" // один отель — много бронирований (через Hotel_reservation)

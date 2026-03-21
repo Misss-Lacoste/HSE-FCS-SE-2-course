@@ -1,0 +1,65 @@
+Project project_name {
+  database_type: 'PostgreSQL'
+  Note: 'The 1st task'
+}
+
+Table User {
+  user_id integer [primary key]
+  name varchar(150)
+  registration_date timestamp
+}
+
+Table Orderer {
+  iorderer_id integer [primary key]
+}
+
+Table Freelancer {
+  freelancer_id integer [primary key]
+  specialization varchar(150)
+  working_hours integer
+}
+
+Table Project {
+  name varchar(150)
+  project_id integer [primary key]
+  orderer_id integer 
+  description varchar(150)
+  budget integer
+  status varchar(150)
+  created_at timestamp
+  completed_at timestamp
+}
+
+Table Bids {
+  bid_id integer [primary key]
+  project_id integer
+  freelancer_id integer
+  cost integer
+  status varchar(150)
+  completed_at timestamp
+  registration_date timestamp
+  accepted_at timestamp
+  rejected_at timestamp
+}
+
+Table Review {
+  review_id integer [primary key]
+  project_id integer
+  reting integer
+  comment varchar(150)
+  created_at timestamp
+}
+
+Ref: "User"."user_id" < "Freelancer"."freelancer_id"
+
+Ref: "User"."user_id" < "Orderer"."iorderer_id"
+
+Ref: "Orderer"."iorderer_id" < "Project"."project_id"
+
+Ref: "Freelancer"."freelancer_id" < "Bids"."bid_id"
+
+Ref: "Project"."project_id" < "Bids"."bid_id"
+
+Ref: "Project"."project_id" - "Review"."review_id" //один проект - один отзыв, по синтаксису через тире
+
+Ref: "Freelancer"."freelancer_id" - "Review"."review_id"
