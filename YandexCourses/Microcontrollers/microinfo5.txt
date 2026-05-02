@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "author": "Yandex Lyceum",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 151.94,
+      "left": -82.7,
+      "rotate": 90,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led-ring",
+      "id": "ring2",
+      "top": -28.03,
+      "left": -137.94,
+      "attrs": { "pixels": "8" }
+    },
+    {
+      "type": "wokwi-led-ring",
+      "id": "ring1",
+      "top": -56.96,
+      "left": -27.61,
+      "attrs": { "pixels": "16" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "ring2:GND", "esp:GND.2", "black", [ "v86.4", "h-67.2", "v172.8", "h220.8" ] ],
+    [ "ring1:GND", "esp:GND.2", "black", [ "v67.2", "h-201.6", "v172.8", "h220.8" ] ],
+    [ "ring2:VCC", "esp:5V", "red", [ "v115.2", "h-38.4" ] ],
+    [ "ring1:VCC", "esp:5V", "red", [ "v28.8", "h-134.4", "v67.2", "h-28.8" ] ],
+    [ "ring2:DIN", "esp:13", "green", [ "v0" ] ],
+    [ "ring2:DOUT", "ring1:DIN", "green", [ "v28.8", "h95.99" ] ]
+  ],
+  "dependencies": {}
+}

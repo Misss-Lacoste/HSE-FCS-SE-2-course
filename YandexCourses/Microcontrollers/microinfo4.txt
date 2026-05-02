@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "author": "Yandex Lyceum",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": -88.06,
+      "left": -63.5,
+      "rotate": 90,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": 102.4,
+      "left": -157.6,
+      "attrs": { "pins": "i2c", "background": "blue" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "lcd1:GND", "esp:GND.2", "black", [ "h-9.6", "v-38.4", "h230.4" ] ],
+    [ "lcd1:VCC", "esp:5V", "red", [ "h-19.2", "v-124.7", "h0", "v-48.15" ] ],
+    [ "esp:21", "lcd1:SDA", "green", [ "v19.2", "h-201.6", "v67.2", "h28.8" ] ],
+    [ "esp:22", "lcd1:SCL", "blue", [ "v9.6", "h-259.2", "v86.1" ] ]
+  ],
+  "dependencies": {}
+}

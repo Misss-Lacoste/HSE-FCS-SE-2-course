@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "author": "Yandex Lyceum",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": -62.5, "left": 52.6, "attrs": {} },
+    {
+      "type": "wokwi-rgb-led",
+      "id": "rgb1",
+      "top": -130.4,
+      "left": -46.9,
+      "attrs": { "common": "cathode" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -33.6,
+      "left": -66.3,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": -33.6,
+      "left": -48.3,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": -33.6,
+      "left": -29.35,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-pushbutton-6mm",
+      "id": "btn1",
+      "top": 29.3,
+      "left": 176.3,
+      "rotate": 90,
+      "attrs": { "color": "red", "xray": "1", "bounce": "0" }
+    },
+    {
+      "type": "wokwi-pushbutton-6mm",
+      "id": "btn2",
+      "top": 29.3,
+      "left": 214.7,
+      "rotate": 90,
+      "attrs": { "color": "green", "xray": "1" }
+    },
+    {
+      "type": "wokwi-pushbutton-6mm",
+      "id": "btn3",
+      "top": 29.3,
+      "left": 262.7,
+      "rotate": 90,
+      "attrs": { "color": "blue", "xray": "1" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "rgb1:COM", "esp:GND.2", "black", [ "v0" ] ],
+    [ "rgb1:R", "r1:1", "red", [ "v28.8" ] ],
+    [ "r1:2", "esp:D13", "red", [ "h0", "v75.6" ] ],
+    [ "rgb1:G", "r2:1", "green", [ "h-0.6", "v28.8" ] ],
+    [ "r2:2", "esp:D12", "green", [ "h0", "v66" ] ],
+    [ "rgb1:B", "r3:1", "blue", [ "h1.6", "v28.8" ] ],
+    [ "r3:2", "esp:D14", "blue", [ "h0", "v56.4" ] ],
+    [ "btn1:2.r", "esp:GND.2", "black", [ "h0.8", "v125.2", "h-240", "v-76.8" ] ],
+    [ "btn1:1.l", "esp:D18", "red", [ "v0" ] ],
+    [ "btn2:1.l", "esp:D19", "green", [ "v0" ] ],
+    [ "btn2:2.r", "esp:GND.2", "black", [ "v125.6", "h-278.8", "v-96" ] ],
+    [ "btn3:2.r", "esp:GND.2", "black", [ "v125.6", "h-326.8", "v-96" ] ],
+    [ "btn3:1.l", "esp:D21", "blue", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
